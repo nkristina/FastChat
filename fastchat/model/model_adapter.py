@@ -1593,7 +1593,7 @@ class Llama3Adapter(BaseModelAdapter):
 
 
 class Llama31Adapter(BaseModelAdapter):
-    """The model adapter for Llama-3 (e.g., meta-llama/Meta-Llama-3-8B-Instruct)"""
+    """The model adapter for Llama-3.1 (e.g., meta-llama/Meta-Llama-3.1-8B-Instruct)"""
 
     def match(self, model_path: str):
         keywords = [
@@ -1610,13 +1610,7 @@ class Llama31Adapter(BaseModelAdapter):
         return model, tokenizer
 
     def get_default_conv_template(self, model_path: str) -> Conversation:
-        if model_path.lower() in [
-            "llama-3.1-8b-instruct",
-            "llama-3.1-70b-instruct",
-            "the-real-chatbot-v2",
-        ]:
-            return get_conv_template("meta-llama-3.1-sp")
-        return get_conv_template("meta-llama-3.1")
+        return get_conv_template("llama-3.1")
 
 
 class GrokAdapter(BaseModelAdapter):
@@ -2489,7 +2483,7 @@ class RekaAdapter(BaseModelAdapter):
 
 class NoSystemAdapter(BaseModelAdapter):
     def match(self, model_path: str):
-        keyword_list = ["athene-70b"]
+        keyword_list = ["athene-70b", "p2l"]
 
         for keyword in keyword_list:
             if keyword == model_path.lower():
